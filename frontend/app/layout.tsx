@@ -32,20 +32,26 @@
 //   );
 // }
 
+'use client'
+
 import './globals.css'
 import { Inter } from 'next/font/google'
+import { AuthProvider } from '@/context/AuthContext'
+import Header from '@/components/layout/Header'
 
 const inter = Inter({ subsets: ['latin'] })
-
-export const metadata = {
-  title: 'Jungle | Tanzania Safari',
-  description: 'Tanzania\'s leading tailor made safari company. Curate life-changing journeys through Tanzania\'s hidden wildlife reserves.',
-}
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <AuthProvider>
+          <Header />
+          <main className="pt-16">
+            {children}
+          </main>
+        </AuthProvider>
+      </body>
     </html>
   )
 }
